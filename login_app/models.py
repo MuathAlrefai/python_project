@@ -2,6 +2,7 @@ from django.db import models
 from django.shortcuts import redirect
 import re
 import bcrypt
+# from halls_app.models import City
 
 class Validator(models.Manager):
     def register_validator(self, post_data):
@@ -9,6 +10,9 @@ class Validator(models.Manager):
         db_emails = User.objects.filter(email = post_data['email'])
         if len(db_emails) > 0:
             errors['email'] = "This Email is already in use!"
+        db_usernames = User.objects.filter(username = post_data['username'])
+        if len(db_usernames) > 0:
+            errors['email'] = "This username is already in use!"
         EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
         if not EMAIL_REGEX.match(post_data['email']):
             errors['email'] = "Invalid email address!"
@@ -43,34 +47,41 @@ class Validator(models.Manager):
     
     def login_validator(self, post_data):
         errors = {}
-        db_emails = User.objects.filter(email = post_data['email'])
-        if len(db_emails) == 0:
-            errors['email'] = "This Email doesn't exist!"
-        if len(post_data['email']) < 1:
-            errors['email'] = "You must enter email address"
+        db_usernames = User.objects.filter(username = post_data['username'])
+        if len(db_usernames) == 0:
+            errors['username'] = "This username doesn't exist!"
+        if len(post_data['username']) < 1:
+            errors['username'] = "You must enter username"
         if len(post_data['log_password']) < 1:
             errors['log_password'] = "you must enter password"
         return errors
 
 
 class User(models.Model):
-    first_name = models.CharField(max_length=255)
-    last_name = models.CharField(max_length=255)
+    username = models.CharField(max_length=45)
+    first_name = models.CharField(max_length=45)
+    last_name = models.CharField(max_length=45)
     email = models.EmailField(max_length=254)
     password = models.CharField(max_length=255)
+    phone = models.CharField(max_length=10)
+    # city = models.ForeignKey(City, related_name='users')
+    # city = models.CharField(max_length=20)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     objects = Validator()
 
 def register_model(request):
+    username = request.POST['username']
+    phone = request.POST['phone']
     first_name = request.POST['first_name']
     last_name = request.POST['last_name']
     email = request.POST['email']
     password = request.POST['password']
+    # city = request.POST['city']
     #hash the password before adding it to DB
     password_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
-    User.objects.create(first_name = first_name, last_name = last_name, email = email, password = password_hash)
+    User.objects.create(username = username, first_name = first_name, last_name = last_name, email = email, phone = phone, password = password_hash)
     #create a session for the user and redirect to profile page
     user = User.objects.filter(email=request.POST['email'])
     logged_user = user[0]
@@ -79,7 +90,13 @@ def register_model(request):
     
 
 def login_model(request):
-    user = User.objects.filter(email=request.POST['email'])
+    user = User.objects.filter(username=request.POST['username'])
+    if user:
+        logged_user = user[0]
+        if bcrypt.checkpw(request.POST['log_password'].encode(), logged_user.password.encode()):
+            request.session['userid'] = logged_user.id
+            if logged_user.id == 3 or logged_user.id == 2 or logged_user.id == 1:
+                return redirect('/halls_admin')
     if user:
         logged_user = user[0]
         if bcrypt.checkpw(request.POST['log_password'].encode(), logged_user.password.encode()):

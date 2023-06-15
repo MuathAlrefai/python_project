@@ -1,9 +1,13 @@
 from django.shortcuts import render, redirect
 from . import models
+from halls_app.models import City
 from django.contrib import messages
 
 def index(request):
-    return render(request, 'index.html')
+    context = {
+        "cities": City.objects.all()
+    }
+    return render(request, 'index.html', context)
 
 def register(request):
     errors = models.User.objects.register_validator(request.POST)
