@@ -3,11 +3,9 @@ from . import models
 from halls_app.models import City
 from django.contrib import messages
 
-def index(request):
-    context = {
-        "cities": City.objects.all()
-    }
-    return render(request, 'index.html', context)
+# render the login page
+def sign_page(request):
+    return render(request, 'login.html')
 
 def register(request):
     errors = models.User.objects.register_validator(request.POST)

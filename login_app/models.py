@@ -95,7 +95,7 @@ def login_model(request):
         logged_user = user[0]
         if bcrypt.checkpw(request.POST['log_password'].encode(), logged_user.password.encode()):
             request.session['userid'] = logged_user.id
-            if logged_user.id == 3 or logged_user.id == 2 or logged_user.id == 1:
+            if logged_user.id == 3 or logged_user.id == 2:
                 return redirect('/halls_admin')
     if user:
         logged_user = user[0]

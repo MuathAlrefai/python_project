@@ -12,6 +12,16 @@ class Hall(models.Model):
     description = models.TextField()
     capacity = models.CharField(max_length=255)
     rating = models.IntegerField(default=0)
+    # <select>
+    # option value="1"> Bad </option>
+    # option value="2"> meh </option>
+    # option value="3"> neutral </option>
+    # option value="4"> good </option>
+    # option value="5"> superb </option>
+    #1/5 avg = 120/50 = math.ceiling(3.) = 3 
+    #hall rating: neutral
+    #order by
+    # </select>
     city = models.ForeignKey(City, related_name="halls", on_delete=models.CASCADE)
     user = models.ForeignKey(User, related_name="users", on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
