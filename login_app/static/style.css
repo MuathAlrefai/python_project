@@ -386,3 +386,14 @@ background text
   margin: 10px;
   margin-left: 30px;
 }
+.messages {
+  color: yellow;
+}
+.messages > li {
+  list-style: circle;
+  color: yellow;
+}
+.messages > li::before {
+  content: "»";
+  color: tomato;
+}

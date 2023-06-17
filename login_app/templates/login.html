@@ -82,9 +82,9 @@
                 <img src="{% static 'register.ico' %}" width="48px" alt="register.ico" />
               </h2>
               <form action="/register" method="POST">
-				{% csrf_token %}
-				<input type="text" placeholder="Username" name="username" />
-            	<input type="text" placeholder="Fist Name" name="first_name" />
+				        {% csrf_token %}
+				        <input type="text" placeholder="Username" name="username" />
+            	  <input type="text" placeholder="Fist Name" name="first_name" />
                 <input type="text" placeholder="Last Name" name="last_name" />
                 <input type="text" placeholder="Email" name="email" />
                 <input type="password" placeholder="Password" name="password" />
@@ -103,5 +103,14 @@
       </div>
     </div>
     <script src="{% static 'script.js' %}"></script>
+    {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+          {{message}}
+        </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
   </body>
 </html>

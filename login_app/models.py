@@ -94,9 +94,10 @@ def register_model(request):
     password_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
     User.objects.create(username = username, first_name = first_name, last_name = last_name, email = email, password = password_hash)
     # #create a session for the user and redirect to profile page
-    user = User.objects.filter(email=request.POST['email'])
-    logged_user = user[0]
-    request.session['userid'] = logged_user.id
+    # user = User.objects.filter(email=request.POST['email'])
+    # logged_user = user[0]
+    # request.session['userid'] = logged_user.id
+    return redirect('/success')
     
 
 def login_model(request):
@@ -104,12 +105,12 @@ def login_model(request):
     if user:
         logged_user = user[0]
         if bcrypt.checkpw(request.POST['log_password'].encode(), logged_user.password.encode()):
-            if logged_user.id == 3 or logged_user.id == 2:
+            if logged_user.id == 1:
                 request.session['adminid'] = logged_user.id
-                return redirect('/halls_admin')
+                return redirect('/cities_admin')
     if user:
         logged_user = user[0]
         if bcrypt.checkpw(request.POST['log_password'].encode(), logged_user.password.encode()):
             request.session['userid'] = logged_user.id
-            return redirect('/halls')
+            return redirect('/cities')
     return redirect('/sign')

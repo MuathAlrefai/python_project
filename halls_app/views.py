@@ -65,11 +65,24 @@ def update_password(request):
 def cities_admin(request):
     context = {
         "admin": models.get_admin_session(request),
+        # "city": models.
+        "cities": models.get_cities_model(request),
     }
     return render(request, 'admin_cities.html', context)
 
+# add a new city
+def add_city(request):
+    models.add_city_model(request)
+    return redirect('/cities_admin')
+
+# delete a city
+def delete_city(request):
+    city = models.City.objects.get(id = request.POST['city_id'])
+    city.delete()
+    return redirect('/cities_admin')
+
 # render the admin profile page
-def admin_profile(request):
+def profile_admin(request):
     context = {
         "admin": models.get_admin_session(request),
     }

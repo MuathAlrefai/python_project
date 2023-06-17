@@ -3,10 +3,12 @@ from . import views
 
 urlpatterns = [
     path('', views.landing),
-    path('halls', views.cities),
-    path('halls_admin', views.cities_admin),
+    path('cities', views.cities),
+    path('cities_admin', views.cities_admin),
+    path('add_city', views.add_city),
+    path('delete_city', views.delete_city),
     path('profile', views.profile),
-    path('admin_profile', views.admin_profile),
+    path('profile_admin', views.profile_admin),
     path('edit_profile', views.edit_profile),
     path('update_profile', views.update_profile),
     path('change_password', views.change_password),

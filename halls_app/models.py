@@ -5,6 +5,7 @@ import bcrypt
 
 class City(models.Model):
     name = models.CharField(max_length=45)
+    image = models.ImageField(upload_to ='city_imgs/')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -34,6 +35,16 @@ def get_user_session(request):
 
 def get_admin_session(request):
     return User.objects.get(id=request.session['adminid'])
+
+# get all cities
+def get_cities_model(request):
+    return City.objects.all()
+
+# add a new city
+def add_city_model(request):
+    city_name = request.POST['city_name']
+    city_img = request.POST['city_img']
+    City.objects.create(name = city_name, image = city_img)
 
 # update user profile model
 def update_profile_model(request):

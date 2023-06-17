@@ -16,6 +16,9 @@ def register(request):
     else:
         return models.register_model(request)
 
+def success (request):
+    return render(request, 'success.html')
+
 def login(request):
     errors = models.User.objects.login_validator(request.POST)
     if len(errors) > 0:
