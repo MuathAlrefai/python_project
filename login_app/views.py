@@ -12,7 +12,7 @@ def register(request):
     if len(errors) > 0:
         for k, v in errors.items():
             messages.error(request, v)
-        return redirect('/')
+        return redirect('/sign')
     else:
         return models.register_model(request)
 
@@ -21,7 +21,7 @@ def login(request):
     if len(errors) > 0:
         for k, v in errors.items():
             messages.error(request, v)
-        return redirect('/')
+        return redirect('/sign')
     else:
         return models.login_model(request)
 

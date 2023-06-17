@@ -35,6 +35,18 @@ class Validator(models.Manager):
             errors['confirm_password'] = "Your password didn't match!"
         return errors
     
+    # password validator for changing user password
+    def password_validator(self, post_data):
+        errors = {}
+        PASSWORD_REGEX = re.compile(r'^[a-zA-Z0-9.@+_-]+$')
+        if not PASSWORD_REGEX.match(post_data['password']):
+            errors['password'] = "Password cannot contain these characters!"
+        if len(post_data['password']) < 10 :
+            errors['password'] = "Password must be at least 8 characters"
+        if post_data['password'] != post_data['confirm_password'] :
+            errors['confirm_password'] = "Your password didn't match!"
+        return errors
+    
     # def pie_validator(self, post_data):
     #     errors = {}
     #     if len(post_data['pie_name']) < 3:
@@ -102,4 +114,4 @@ def login_model(request):
         if bcrypt.checkpw(request.POST['log_password'].encode(), logged_user.password.encode()):
             request.session['userid'] = logged_user.id
             return redirect('/halls')
-    return redirect('/')
+    return redirect('/sign')
