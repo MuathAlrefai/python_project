@@ -397,3 +397,7 @@ background text
   content: "»";
   color: tomato;
 }
+#forgot {
+  color: skyblue;
+  text-decoration: none;
+}

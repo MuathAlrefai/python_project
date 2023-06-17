@@ -15,24 +15,16 @@ class Hall(models.Model):
     description = models.TextField()
     capacity = models.CharField(max_length=255)
     rating = models.IntegerField(default=0)
-    # <select>
-    # option value="1"> Bad </option>
-    # option value="2"> meh </option>
-    # option value="3"> neutral </option>
-    # option value="4"> good </option>
-    # option value="5"> superb </option>
-    #1/5 avg = 120/50 = math.ceiling(3.) = 3 
-    #hall rating: neutral
-    #order by
-    # </select>
     city = models.ForeignKey(City, related_name="halls", on_delete=models.CASCADE)
-    user = models.ForeignKey(User, related_name="users", on_delete=models.CASCADE)
+    user_booked = models.ManyToManyField(User, related_name="halls_booked")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+# get the normal user session object
 def get_user_session(request):
     return User.objects.get(id=request.session['userid'])
 
+# get the admin user session object
 def get_admin_session(request):
     return User.objects.get(id=request.session['adminid'])
 
@@ -54,6 +46,46 @@ def update_profile_model(request):
     user.phone = request.POST['phone']
     user.email = request.POST['email']
     user.save()
+
+# update admin profile model
+def update_profile_admin_model(request):
+    admin = get_admin_session(request)
+    admin.first_name = request.POST['first_name']
+    admin.last_name = request.POST['last_name']
+    admin.phone = request.POST['phone']
+    admin.email = request.POST['email']
+    admin.save()
+
+# get city by name
+def get_city_by_name_model(city_name):
+    city = City.objects.get(name = city_name)
+    return city
+
+# get hall by name
+def get_hall_by_name_model(hall_name):
+    hall = Hall.objects.get(name = hall_name)
+    return hall
+
+# get all halls
+def get_halls_model():
+    return Hall.objects.all()
+
+# add hall to user's booked halls
+def book_hall_model(request):
+    user = get_user_session(request)
+    hall = request.POST['hall_id']
+    hall.user_booked.add(user)
+
+# add a new hall to a city
+def add_hall_model(request):
+    hall_name = request.POST['hall_name']
+    hall_phone = request.POST['hall_phone']
+    hall_desc = request.POST['hall_desc']
+    hall_capacity = request.POST['hall_capacity']
+    hall_rating = request.POST['hall_rating']
+    hall_city = City.objects.get(id = int(request.POST['hall_city'])) 
+    Hall.objects.create(name = hall_name, phone = hall_phone, description = hall_desc, capacity = hall_capacity, city = hall_city, rating = hall_rating)
+
 
 # update user password model
 def update_password_model(request):
