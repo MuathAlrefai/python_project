@@ -26,6 +26,10 @@ def login(request):
         return models.login_model(request)
 
 
-def logout(request):
+def logout_user(request):
     del request.session['userid']
+    return redirect('/')
+
+def logout_admin(request):
+    del request.session['adminid']
     return redirect('/')

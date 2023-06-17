@@ -75,7 +75,7 @@ class User(models.Model):
     last_name = models.CharField(max_length=45)
     email = models.EmailField(max_length=254)
     password = models.CharField(max_length=255)
-    phone = models.CharField(max_length=10)
+    phone = models.CharField(max_length=10, default=0000000000)
     # city = models.ForeignKey(City, related_name='users')
     # city = models.CharField(max_length=20)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -85,7 +85,6 @@ class User(models.Model):
 
 def register_model(request):
     username = request.POST['username']
-    phone = request.POST['phone']
     first_name = request.POST['first_name']
     last_name = request.POST['last_name']
     email = request.POST['email']
@@ -93,12 +92,11 @@ def register_model(request):
     # city = request.POST['city']
     #hash the password before adding it to DB
     password_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
-    User.objects.create(username = username, first_name = first_name, last_name = last_name, email = email, phone = phone, password = password_hash)
-    #create a session for the user and redirect to profile page
+    User.objects.create(username = username, first_name = first_name, last_name = last_name, email = email, password = password_hash)
+    # #create a session for the user and redirect to profile page
     user = User.objects.filter(email=request.POST['email'])
     logged_user = user[0]
     request.session['userid'] = logged_user.id
-    return redirect('/halls')
     
 
 def login_model(request):
@@ -106,8 +104,8 @@ def login_model(request):
     if user:
         logged_user = user[0]
         if bcrypt.checkpw(request.POST['log_password'].encode(), logged_user.password.encode()):
-            request.session['userid'] = logged_user.id
             if logged_user.id == 3 or logged_user.id == 2:
+                request.session['adminid'] = logged_user.id
                 return redirect('/halls_admin')
     if user:
         logged_user = user[0]

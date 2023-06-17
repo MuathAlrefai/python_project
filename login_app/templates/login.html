@@ -1,65 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Login and Registration Form Example</title>
+    {% load static %}
+    <link
+      rel="stylesheet"
+      href="{% static 'https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css' %}"
+    />
+    <link
+      rel="stylesheet"
+      href="{% static 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css' %}"
+    />
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+  </head>
+  <body id="body">
+	<h1 id="welcome_text">Welcome To Hallsy</h1>
+    <div class="cotn_principal">
+      <div class="cont_centrar">
+        <div class="cont_login">
+          <div class="cont_info_log_sign_up">
+            <div class="col_md_login">
+              <div class="cont_ba_opcitiy">
+                <h2>LOGIN</h2>
+                <p>Have an account?</p>
+                <button class="btn_login" onclick="change_to_login()">
+                  LOGIN
+                </button>
+              </div>
+            </div>
+            <div class="col_md_sign_up">
+              <div class="cont_ba_opcitiy">
+                <h2>SIGN UP</h2>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Register/Login</title>
-  {% load static %}
-  <link rel="stylesheet" href="{% static 'style.css' %}" />
-</head>
+                <p>Join with us</p>
 
-<body>
-  <div class="container">
-    <form action="/register" method="post">
-      {% csrf_token %}
-      {% if messages %}
-      <ul class="messages">
-        {% for message in messages %}
-        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
-          {{message}}
-        </li>
-        {% endfor %}
-      </ul>
-      {% endif %}
-      <div class="reg">
-        <h1>Register</h1>
-        <br />
-        <label for="username">Username </label>
-        <input type="text" name="username" class="textBoxes" /><br />
-        <label for="first_name">First Name </label>
-        <input type="text" name="first_name" class="textBoxes" /><br />
-        <label for="last_name">Last Name</label>
-        <input type="text" name="last_name" class="textBoxes" /><br />
-        <label for="email">Email</label>
-        <input type="email" name="email" class="textBoxes" /><br />
-        <label for="phone">Phone </label>
-        <input type="text" name="phone" class="textBoxes" /><br />
-        <!-- <label for="city">City </label>
-        <select name="city">
-          {% for city in cities %}
-          <option value="{{city.id}}">{{city.name}}</option>
-          {% endfor %}
-        </select><br> -->
-        <label for="password">Password</label>
-        <input type="password" name="password" class="textBoxes" /><br />
-        <label for="confirm_password">Confirm PW</label>
-        <input type="password" name="confirm_password" class="textBoxes" /><br />
-        <button type="submit" class="btn">Register</button>
+                <button class="btn_sign_up" onclick="change_to_sign_up()">
+                  SIGN UP
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="cont_back_info">
+            <div class="cont_img_back_">
+              <img src="{% static 'layer-background.jpg' %}" alt="layer-background" />
+            </div>
+          </div>
+          <div class="cont_forms">
+            <div class="cont_img_back_">
+              <img src="{% static 'layer-background.jpg' %}" alt="layer-background" />
+            </div>
+            <div class="cont_form_login">
+              <a href="#" onclick="hidden_login_and_sign_up()">
+                <i class="material-icons">&#xE5C4;</i>
+              </a>
+              <h2><img src="{% static 'login.ico' %}" alt="login.ico" /></h2>
+              <form action="/login" method="POST">
+                {% csrf_token %}
+                <input type="text" placeholder="Username" name="username" />
+                <input
+                  type="password"
+                  placeholder="Password"
+                  name="log_password"
+                />
+                <br /><button
+                  type="submit"
+                  class="btn_login"
+                  onclick="change_to_login()"
+                >
+                  LOGIN
+                </button>
+              </form>
+            </div>
+
+            <div class="cont_form_sign_up">
+              <a href="#" onclick="hidden_login_and_sign_up()"
+                ><i class="material-icons">&#xE5C4;</i></a
+              >
+              <h2>
+                <img src="{% static 'register.ico' %}" width="48px" alt="register.ico" />
+              </h2>
+              <form action="/register" method="POST">
+				{% csrf_token %}
+				<input type="text" placeholder="Username" name="username" />
+            	<input type="text" placeholder="Fist Name" name="first_name" />
+                <input type="text" placeholder="Last Name" name="last_name" />
+                <input type="text" placeholder="Email" name="email" />
+                <input type="password" placeholder="Password" name="password" />
+                <input
+                  type="password"
+                  placeholder="Confirm Password"
+                  name="confirm_password"
+                />
+                <button type="submit" class="btn_sign_up" onclick="change_to_sign_up()">
+                  SIGN UP
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
-    </form>
-    <div class="login">
-      <form action="/login" method="post">
-        {% csrf_token %}
-        <h1>Login</h1>
-        <label for="username">Username</label>
-        <input type="text" name="username" class="textBoxes" /><br />
-        <label for="password">Password</label>
-        <input type="password" name="log_password" class="textBoxes" /><br />
-        <button type="submit" class="btn">Login</button>
-      </form>
     </div>
-  </div>
-</body>
-
+    <script src="{% static 'script.js' %}"></script>
+  </body>
 </html>

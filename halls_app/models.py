@@ -32,6 +32,9 @@ class Hall(models.Model):
 def get_user_session(request):
     return User.objects.get(id=request.session['userid'])
 
+def get_admin_session(request):
+    return User.objects.get(id=request.session['adminid'])
+
 # update user profile model
 def update_profile_model(request):
     user = get_user_session(request)

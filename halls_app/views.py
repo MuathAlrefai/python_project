@@ -64,6 +64,13 @@ def update_password(request):
 # render the admin route
 def cities_admin(request):
     context = {
-        "user": models.get_user_session(request),
+        "admin": models.get_admin_session(request),
     }
     return render(request, 'admin_cities.html', context)
+
+# render the admin profile page
+def admin_profile(request):
+    context = {
+        "admin": models.get_admin_session(request),
+    }
+    return render(request, 'admin_profile.html', context)
