@@ -1,118 +1,103 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Login and Registration Form Example</title>
-    {% load static %}
-    <link rel="shortcut icon" href="{% static 'images/favicon.jpg' %}" type="image/x-icon">
-    <link
-      rel="stylesheet"
-      href="{% static 'https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css' %}"
-    />
-    <link
-      rel="stylesheet"
-      href="{% static 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css' %}"
-    />
-    <link rel="stylesheet" href="{% static 'style.css' %}" />
-  </head>
-  <body id="body">
-	<h1 id="welcome_text">Welcome To Hallsy</h1>
-    <div class="cotn_principal">
-      <div class="cont_centrar">
-        <div class="cont_login">
-          <div class="cont_info_log_sign_up">
-            <div class="col_md_login">
-              <div class="cont_ba_opcitiy">
-                <h2>LOGIN</h2>
-                <p>Have an account?</p>
-                <button class="btn_login" onclick="change_to_login()">
-                  LOGIN
-                </button>
-              </div>
-            </div>
-            <div class="col_md_sign_up">
-              <div class="cont_ba_opcitiy">
-                <h2>SIGN UP</h2>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Log In / Sign Up - pure css - #12</title>
+  {% load static %}
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://unicons.iconscout.com/release/v2.1.9/css/unicons.css'><link rel="stylesheet" href="{% static 'style.css' %}">
 
-                <p>Join with us</p>
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<a href="#" class="logo" target="_blank">
+		<h1>Hallsy</h1>
+	</a>
+	<div class="section">
+		<div class="container">
+			<div class="row full-height justify-content-center">
+				<div class="col-12 text-center align-self-center py-5">
+					<div class="section pb-5 pt-5 pt-sm-2 text-center">
+						<h6 class="mb-0 pb-3"><span>Log In </span><span>Sign Up</span></h6>
+			          	<input class="checkbox" type="checkbox" id="reg-log" name="reg-log"/>
+			          	<label for="reg-log"></label>
+						<div class="card-3d-wrap mx-auto">
+							<div class="card-3d-wrapper">
+								<div class="card-front">
+									<div class="center-wrap">
+										<div class="messages">
+											{% if messages %}
+											<ul class="messages">
+											{% for message in messages %}
+												<li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+											{{message}}
+												</li>
+											{% endfor %}
+											</ul>
+											{% endif %}
+										</div>
+										<div class="section text-center">
+											<h4 class="mb-4 pb-3">Log In</h4>
+											<form action="/login" method="POST">
+												{% csrf_token %}
+												<div class="form-group">
+													<input type="text" name="username" class="form-style" placeholder="Your Username" id="logname" autocomplete="off">
+													<i class="input-icon uil uil-user"></i>
+												</div>	
+												<div class="form-group mt-2">
+													<input type="password" name="log_password" class="form-style" placeholder="Your Password" id="logpass" autocomplete="off">
+													<i class="input-icon uil uil-lock-alt"></i>
+												</div>
+												<button type="submit" class="btn mt-4">submit</button>
+											</form>
+                            				<p class="mb-0 mt-4 text-center"><a href="/forgot" class="link">Forgot your password?</a></p>
+				      					</div>
+			      					</div>
+			      				</div>
+								<div class="card-back">
+									<div class="center-wrap">
+										<div class="section text-center">
+											<form action="/register" method="POST">
+												{% csrf_token %}
+												<h4 class="mb-4 pb-3">Sign Up</h4>
+												<div class="form-group">
+													<input type="text" name="username" class="form-style" placeholder="Your Username" id="logname" autocomplete="off">
+													<i class="input-icon uil uil-user"></i>
+												</div>	
+												<div class="form-group">
+													<input type="text" name="first_name" class="form-style" placeholder="Your First Name" id="logname" autocomplete="off">
+													<i class="input-icon uil uil-user"></i>
+												</div>	
+												<div class="form-group">
+													<input type="text" name="last_name" class="form-style" placeholder="Your Last Name" id="logname" autocomplete="off">
+													<i class="input-icon uil uil-user"></i>
+												</div>	
+												<div class="form-group mt-2">
+													<input type="email" name="email" class="form-style" placeholder="Your Email" id="logemail" autocomplete="off">
+													<i class="input-icon uil uil-at"></i>
+												</div>	
+												<div class="form-group mt-2">
+													<input type="password" name="password" class="form-style" placeholder="Your Password" id="logpass" autocomplete="off">
+													<i class="input-icon uil uil-lock-alt"></i>
+												</div>
+												<div class="form-group mt-2">
+													<input type="password" name="confirm_password" class="form-style" placeholder="Confirm Password" id="logpass" autocomplete="off">
+													<i class="input-icon uil uil-lock-alt"></i>
+												</div>
+												<button type="submit" class="btn mt-4">submit</button>
+											</form>
+				      					</div>
+			      					</div>
+			      				</div>
+			      			</div>
+			      		</div>
+			      	</div>
+		      	</div>
+	      	</div>
+	    </div>
+	</div>
+<!-- partial -->
+  <script  src="{% static 'script.js' %}"></script>
 
-                <button class="btn_sign_up" onclick="change_to_sign_up()">
-                  SIGN UP
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="cont_back_info">
-            <div class="cont_img_back_">
-              <img src="{% static 'layer-background.jpg' %}" alt="layer-background" />
-            </div>
-          </div>
-          <div class="cont_forms">
-            <div class="cont_img_back_">
-              <img src="{% static 'layer-background.jpg' %}" alt="layer-background" />
-            </div>
-            <div class="cont_form_login">
-              <a href="#" onclick="hidden_login_and_sign_up()">
-                <i class="material-icons">&#xE5C4;</i>
-              </a>
-              <h2><img src="{% static 'login.ico' %}" alt="login.ico" /></h2>
-              <form action="/login" method="POST">
-                {% csrf_token %}
-                <input type="text" placeholder="Username" name="username" />
-                <input
-                  type="password"
-                  placeholder="Password"
-                  name="log_password"
-                />
-                <br /><button
-                  type="submit"
-                  class="btn_login"
-                  onclick="change_to_login()"
-                >
-                  LOGIN
-                </button><br><br>
-                <a href="/forgot" id="forgot">Forgot Password?</a>
-              </form>
-            </div>
-
-            <div class="cont_form_sign_up">
-              <a href="#" onclick="hidden_login_and_sign_up()"
-                ><i class="material-icons">&#xE5C4;</i></a
-              >
-              <h2>
-                <img src="{% static 'register.ico' %}" width="48px" alt="register.ico" />
-              </h2>
-              <form action="/register" method="POST">
-				        {% csrf_token %}
-				        <input type="text" placeholder="Username" name="username" />
-            	  <input type="text" placeholder="Fist Name" name="first_name" />
-                <input type="text" placeholder="Last Name" name="last_name" />
-                <input type="text" placeholder="Email" name="email" />
-                <input type="password" placeholder="Password" name="password" />
-                <input
-                  type="password"
-                  placeholder="Confirm Password"
-                  name="confirm_password"
-                />
-                <button type="submit" class="btn_sign_up" onclick="change_to_sign_up()">
-                  SIGN UP
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <script src="{% static 'script.js' %}"></script>
-    {% if messages %}
-      <ul class="messages">
-        {% for message in messages %}
-        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
-          {{message}}
-        </li>
-        {% endfor %}
-      </ul>
-    {% endif %}
-  </body>
+</body>
 </html>

@@ -109,7 +109,8 @@ a.btn:hover {
   color: #fff;
 }
 #btn {
-  background: #d73851;
+  background:#ffeba7;
+  color: black;
   padding: 17px 30px;
   border-radius: 18px;
   font-size: larger;
@@ -252,4 +253,8 @@ a.btn:hover {
   label {
     display: none;
   }
+}
+
+.text {
+  color: white;
 }
