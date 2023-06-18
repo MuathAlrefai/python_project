@@ -7,9 +7,7 @@
 
 - 🌱 We're currently learning **Bootstrap, AJAX, and APIs**
 
-- 💬 Ask me about **HTML, CSS, JS, Python and Django**
-
-- 📫 How to reach me **rigahd@gmail.com**
+- 💬 Ask us about **HTML, CSS, JS, Python and Django**
 
 - 📄 Check out our Project's [Documentation](https://1drv.ms/w/s!Ap2F5m0hzHj6iU-99f7X7A3WwBs1?e=ZkOKlg)
 
