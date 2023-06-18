@@ -11,9 +11,9 @@
 
 - ⚡ Fun fact **I think we all like Watermelons**
 
-<h3 align="left">Connect with Us:</h3>
+<!-- <h3 align="left">Connect with Us:</h3>
 <p align="left">
-</p>
+</p> -->
 
 <h3 align="left">Languages and Tools:</h3>
 
