@@ -9,7 +9,7 @@
     --body-color:#E4E9F7;
     --nav-color:#4070F4;
     --side-nav:#010718;
-    --text-color:#FFF;
+    --text-color: #ffeba7;
     --search-bar:#F2F2F2;
     --search-text:#010718;
 }
@@ -32,7 +32,7 @@ nav{
     left: 0;
     height: 70px;
     width: 100%;
-    background-color: var(--nav-color);
+    background-color: #2f2e3e;
     z-index: 100;
 
 
@@ -42,7 +42,7 @@ nav .nav-bar{
     height: 100%;
     max-width: 1000px;
     width: 100%;
-    background-color: var(--nav-color) ;
+    background-color: #2f2e3e;
     margin: 0 auto;
     padding: 0 30px;
     display:flex;
@@ -98,7 +98,7 @@ nav .nav-bar .logo a{
     height: 6PX;
     width: 6PX;
     border-radius: 50%;
-    background-color: var(--text-color);
+    background-color: #ffeba7;
 }
 .nav-links li a::before{
     content: '';
@@ -109,7 +109,7 @@ nav .nav-bar .logo a{
     height: 6PX;
     width: 6PX;
     border-radius: 50%;
-    background-color: var(--text-color);
+    background-color: #ffeba7;
     opacity: 0;
     transition: all 0.3s ease;
 }
