@@ -1,5 +1,3 @@
-# Hallsy
-
 <h1 align="center">Hi 👋, We're The Hallsy Project Trio</h1>
 <h3 align="center">A passionate Full stack team from Palestine</h3>
 
