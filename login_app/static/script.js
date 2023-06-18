@@ -34,7 +34,7 @@ setTimeout(function(){   document.querySelector('.cont_form_login').style.displa
 
 }    
 
-const time_to_hidden_all = 500;
+const time_to_hidden_all = 500;  
 
 function hidden_login_and_sign_up() {
 

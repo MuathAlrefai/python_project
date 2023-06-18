@@ -8,13 +8,46 @@ from django.contrib import messages
 def landing(request):
     return render(request, 'landing.html')
 
-# render about us page
-def about(request):
-    return render(request, 'about.html')
+# render cities page
+def cities_all(request):
+    context = {
+        "cities": models.get_cities_model(request),
+    }
+    return render(request, 'no_user/cities_all.html', context)
 
-# render help page
-def help(request):
-    return render(request, 'help.html')
+# render all halls
+def halls_all(request):
+    context = {
+        "halls": models.get_halls_model(),
+        "cities": models.get_cities_model(request),
+    }
+    return render(request, 'no_user/halls_all.html', context)
+
+# render a single city's halls
+def city_halls_all(request, city_name):
+    context = {
+        "city": models.get_city_by_name_model(city_name),
+        "cities": models.get_cities_model(request),
+    }
+    return render(request, 'no_user/city_halls_all.html', context)
+
+# render a single hall's info for all users
+def hall_info_all(request, city_name, hall_name):
+    context = {
+        "city": models.get_city_by_name_model(city_name),
+        "hall": models.get_hall_by_name_model(hall_name),
+        "cities": models.get_cities_model(request),
+    }
+    return render(request, 'no_user/city_hall_info_all.html', context)
+
+# render about us page for all
+def about_all(request):
+    return render(request, 'no_user/about_all.html')
+
+# render help page for all
+def help_all(request):
+    return render(request, 'no_user/help_all.html')
+
 
 ######################## LOGGED USER PAGES ########################
 
@@ -25,6 +58,14 @@ def cities(request):
         "cities": models.get_cities_model(request),
     }
     return render(request, 'user/cities.html', context)
+
+# render about us page
+def about(request):
+    return render(request, 'about.html')
+
+# render help page
+def help(request):
+    return render(request, 'help.html')
 
 # render all halls
 def halls(request):

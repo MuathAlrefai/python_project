@@ -3,6 +3,12 @@ from . import views
 
 urlpatterns = [
     path('', views.landing),
+    path('cities_all', views.cities_all),
+    path('halls_all', views.halls_all),
+    path('about_all', views.about_all),
+    path('help_all', views.help_all),
+    path('halls_all/<city_name>', views.city_halls_all),
+    path('halls_all/<city_name>/<hall_name>', views.hall_info_all),
     path('cities', views.cities),
     path('cities_admin', views.cities_admin),
     path('add_city', views.add_city),
