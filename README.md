@@ -1,5 +1,3 @@
-# Hallsy
-
 <h1 align="center">Hi 👋, We're The Hallsy Project Trio</h1>
 <h3 align="center">A passionate Full stack team from Palestine</h3>
 
@@ -7,17 +5,15 @@
 
 - 🌱 We're currently learning **Bootstrap, AJAX, and APIs**
 
-- 💬 Ask me about **HTML, CSS, JS, Python and Django**
-
-- 📫 How to reach me **rigahd@gmail.com**
+- 💬 Ask us about **HTML, CSS, JS, Python and Django**
 
 - 📄 Check out our Project's [Documentation](https://1drv.ms/w/s!Ap2F5m0hzHj6iU-99f7X7A3WwBs1?e=ZkOKlg)
 
 - ⚡ Fun fact **I think we all like Watermelons**
 
-<h3 align="left">Connect with me:</h3>
+<!-- <h3 align="left">Connect with Us:</h3>
 <p align="left">
-</p>
+</p> -->
 
 <h3 align="left">Languages and Tools:</h3>
 
