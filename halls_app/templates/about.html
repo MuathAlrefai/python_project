@@ -10,6 +10,7 @@
     />
     <title>Snippet - GoSNippets</title>
     {% load static %}
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
     <link
       rel="shortcut icon"
       href="{% static 'images/favicon.jpg' %}"
@@ -62,11 +63,31 @@
         </div>
       </div>
     </nav>
-    <div class="container">
-        <div class="details">
-            <h1>About us Page</h1>
-        </div>
-    </div>
+    <div class="section">
+      <div class="container">
+          <div class="content-section">
+              <div class="title">
+                  <h1>About Us</h1>
+              </div>
+              <div class="content">
+                  <h3>Card columns can also be extended </h3>
+                  <p>Card columns can also be extended and customized with some additional code. Shown below is an extension of the .card-columns class using the same CSS we use—CSS columns— to generate a set of responsive tiers for changing the number of columns.</p>
+                  <div class="button">
+                      <br><a href=""> Read More</a>
+                  </div>
+              </div>
+              <div class="social">
+                  <a href=""><i class="fab fa-facebook-f"></i></a>
+                  <a href=""><i class="fab fa-twitter"></i></a>
+                  <a href=""><i class="fab fa-instagram"></i></a>
+              </div>
+          </div>
+          <div class="image-section">
+              <img src="{% static 'cities/images.jpg' %}" alt="">
+
+          </div>
+      </div>
+  </div>
 
     <script src="{% static 'cities/script.js' %}"></script>
     <script
