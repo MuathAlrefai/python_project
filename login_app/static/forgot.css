@@ -52,6 +52,7 @@ body {
 .login-form label {
   display: block;
   margin-bottom: 8px;
+  color: white;
 }
 
 .login-form input {
@@ -96,4 +97,7 @@ button {
 .btn--form:hover {
   background-color: #fdf2e9;
   color: #f48982;
+}
+.messages {
+  color: white;
 }

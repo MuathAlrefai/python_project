@@ -36,3 +36,24 @@ def logout_user(request):
 def logout_admin(request):
     del request.session['adminid']
     return redirect('/')
+
+# render password reset request if you forgot
+def forgot(request):
+    return render(request, 'forgot.html')
+
+# redirect to change password page
+def forgot_reset(request):
+    return redirect('/change_pwd')
+
+def change_pwd(request):
+    return render(request, 'change_pwd.html')
+
+def update_pwd(request):
+    errors = models.User.objects.password_validator(request.POST)
+    if len(errors) > 0:
+        for k, v in errors.items():
+            messages.error(request, v)
+        return redirect('/change_pwd')
+    else:
+        models.update_pwd_model(request)
+        return redirect('/sign')

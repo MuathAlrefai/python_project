@@ -114,3 +114,8 @@ def login_model(request):
             request.session['userid'] = logged_user.id
             return redirect('/cities')
     return redirect('/sign')
+
+def update_pwd_model(request):
+    user = User.objects.get(username = request.POST['username'])
+    user.password = bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt()).decode()
+    user.save()

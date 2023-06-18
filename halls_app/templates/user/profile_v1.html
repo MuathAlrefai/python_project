@@ -63,9 +63,19 @@
       </div>
     </nav>
     <div class="container">
-        <div class="details">
-            <h1>Help Page</h1>
-        </div>
+      <h1 id="title_header">This is {{user.username}}'s Info Page</h1>
+    </div>
+    <div class="container">
+      <div class="details">
+        <p>Welcome back, {{user.username}}</p><br>
+        <p>First Name: {{user.first_name.title}}</p>
+        <p>Last Name: {{user.last_name.title}}</p>
+        <p>Phone Number: {{user.phone}}</p>
+        <p>Email Address: {{user.email}}</p>
+        <p><a href="/change_password">change password</a></p>
+        <br />
+        <a href="/edit_profile">Edit profile</a>
+      </div>
     </div>
 
     <script src="{% static 'cities/script.js' %}"></script>

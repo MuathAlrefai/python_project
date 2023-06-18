@@ -16,10 +16,6 @@ def about(request):
 def help(request):
     return render(request, 'help.html')
 
-# reset password if you forgot
-def forgot(request):
-    return render (request, 'forgot.html')
-
 ######################## LOGGED USER PAGES ########################
 
 # render user cities
@@ -79,7 +75,7 @@ def update_profile(request):
 
 # render change user password form
 def change_password(request):
-    return render(request, 'change_password.html')
+    return render(request, 'user/change_password.html')
 
 # update user password and redirect back to profile page
 def update_password(request):

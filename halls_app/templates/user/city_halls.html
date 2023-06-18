@@ -1,35 +1,74 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{city.name}} Halls</title>
-    {% load static %}
-    <link rel="shortcut icon" href="{% static 'images/favicon.jpg' %}" type="image/x-icon">
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <!-- Boxicons CSS -->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <title>Snippet - GoSNippets</title>
+  {% load static %}
+  <link rel="shortcut icon" href="{% static 'images/favicon.jpg' %}" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  <link rel="stylesheet" href="{% static 'cities/style.css' %}">
 </head>
-<body>
-    <h1>This is {{city.name}}'s Halls Page</h1><br><br>
-
-    <div class="hall">
-
-        <!-- ! to get all halls in THIS city -->
-        {% for hall in city.halls.all %}
-            <h2>Hall's name: <a href="/halls/{{hall.city.name}}/{{hall.name}}">{{hall.name}}</a></h2>
-            <h2>Hall's Phone number: {{hall.phone}}</h2>
-            <h2>Hall's Description: {{hall.description}}</h2>
-            <h2>Hall's Capacity: {{hall.capacity}} People</h2>
-            <h2>Hall's Rating: {{hall.rating}}</h2>
-            <h2>Hall's City: {{hall.city.name}}</h2>
-            <hr>
-            {% endfor %}
-        </div>
-
-    <br><br><br>
-    <!-- ! to get all halls in all cities -->
-    <!-- {% for city in cities %}
-        {% for hall in city.halls.all %}
-        <h1>{{hall.name}}</h1>
-        {% endfor %}
-    {% endfor %} -->
-</body>
-</html>
+ <body>
+  <nav>
+  <div class="nav-bar">
+    <i class='bx bx-menu sidebarOpen' ></i>
+    <span class="logo navLogo"><a href="">Hallsy</a></span>
+    
+    <div class="menu">
+      <div class="logo-toggle">
+        <span class="logo"><a href="">Hallsy</a></span>
+        <i class='bx bx-x siderbarClose'></i>
+      </div>
+        <ul class="nav-links">
+          <li><a href="/profile">{{user.username}}</a></li>
+          <li><a href="/cities">Home</a></li>
+          <li><a href="/halls">Halls</a></li>
+          <li><a href="/help">Help</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/logout_user">Logout</a></li>
+        </ul>
+    </div>
+    <div class="darkLight-searchBox">
+      <div class="drak-light">
+        <i class='bx bx-moon moon' ></i>
+        <i class='bx bx-sun sun' ></i>
+      </div>
+        <div class="searchBox">
+            <div class="searchToggle">
+              <i class='bx bx-x cancel'></i>
+              <i class='bx bx-search search' ></i>
+            </div>
+          
+            <div class="search-field">
+                <input type="text" placeholder="Search...">
+                <i class='bx bx-search ' ></i>
+            </div>
+          </div>
+      </div>
+    
+    </div>
+  </nav>
+  <div class="container">
+    <h1 id="title_header">{{city.name}} halls</h1>
+  </div>
+  <div class="container">
+    {% for hall in city.halls.all %}
+    <div class="card">
+      <div class="imgbox">
+        <img src="{{city.image}}" alt="city_image" width="320px">
+      </div>
+      <div class="details">
+        <h2><a href="/halls/{{hall.city.name}}/{{hall.name}}">{{hall.name}}</h2>
+      </div>
+    </div>
+    {% endfor %}
+    </div>
+    
+  <script src="{% static 'cities/script.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+  </body>
+ </html>

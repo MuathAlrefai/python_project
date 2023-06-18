@@ -26,5 +26,4 @@ urlpatterns = [
     path('about', views.about),
     path('book', views.book_hall),
     path('book_success/<hall_name>', views.book_success),
-    path('forgot', views.forgot),
 ]
